@@ -7,6 +7,7 @@ import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
+
 import com.dan.greendaotestdemo.db.DaoSession;
 import com.dan.greendaotestdemo.db.AchievementDao;
 import com.dan.greendaotestdemo.db.StudyClassDao;
@@ -21,14 +22,17 @@ import com.dan.greendaotestdemo.db.StudyClassDao;
  */
 @Entity
 public class StudyClass {
-    @Id
+    @Id //必须使用包装类对象类型Long，而非基本类型long
+    private Long mId;
+    @Property
+    private String mName;
+    @Property
+    private String mAge;
+    @Property
     @NotNull
-    private long idCard;
-    @Property
-    private String name;
-    @Property
-    private String age;
-    @ToOne(joinProperty = "idCard")
+    private Long classRoomId;
+    //一对一关系 1：1 @ToOne
+    @ToOne(joinProperty = "mId")
     private Achievement achievement;
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
@@ -36,39 +40,47 @@ public class StudyClass {
     /** Used for active entity operations. */
     @Generated(hash = 1063709672)
     private transient StudyClassDao myDao;
-    @Generated(hash = 1846394631)
-    public StudyClass(long idCard, String name, String age) {
-        this.idCard = idCard;
-        this.name = name;
-        this.age = age;
+    @Generated(hash = 1406068635)
+    public StudyClass(Long mId, String mName, String mAge,
+            @NotNull Long classRoomId) {
+        this.mId = mId;
+        this.mName = mName;
+        this.mAge = mAge;
+        this.classRoomId = classRoomId;
     }
     @Generated(hash = 437751645)
     public StudyClass() {
     }
-    public long getIdCard() {
-        return this.idCard;
+    public Long getMId() {
+        return this.mId;
     }
-    public void setIdCard(long idCard) {
-        this.idCard = idCard;
+    public void setMId(Long mId) {
+        this.mId = mId;
     }
-    public String getName() {
-        return this.name;
+    public String getMName() {
+        return this.mName;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setMName(String mName) {
+        this.mName = mName;
     }
-    public String getAge() {
-        return this.age;
+    public String getMAge() {
+        return this.mAge;
     }
-    public void setAge(String age) {
-        this.age = age;
+    public void setMAge(String mAge) {
+        this.mAge = mAge;
+    }
+    public Long getClassRoomId() {
+        return this.classRoomId;
+    }
+    public void setClassRoomId(Long classRoomId) {
+        this.classRoomId = classRoomId;
     }
     @Generated(hash = 1350650098)
     private transient Long achievement__resolvedKey;
     /** To-one relationship, resolved on first access. */
-    @Generated(hash = 1436519875)
+    @Generated(hash = 1172202018)
     public Achievement getAchievement() {
-        long __key = this.idCard;
+        Long __key = this.mId;
         if (achievement__resolvedKey == null
                 || !achievement__resolvedKey.equals(__key)) {
             final DaoSession daoSession = this.daoSession;
@@ -85,16 +97,12 @@ public class StudyClass {
         return achievement;
     }
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 745167140)
-    public void setAchievement(@NotNull Achievement achievement) {
-        if (achievement == null) {
-            throw new DaoException(
-                    "To-one property 'idCard' has not-null constraint; cannot set to-one to null");
-        }
+    @Generated(hash = 48591934)
+    public void setAchievement(Achievement achievement) {
         synchronized (this) {
             this.achievement = achievement;
-            idCard = achievement.getId();
-            achievement__resolvedKey = idCard;
+            mId = achievement == null ? null : achievement.getMId();
+            achievement__resolvedKey = mId;
         }
     }
     /**

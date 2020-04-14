@@ -7,6 +7,7 @@ import com.dan.greendaotestdemo.dbbean.StudyClass
 import com.dan.greendaotestdemo.db.DaoSession
 import com.dan.greendaotestdemo.db.AchievementDao
 import com.dan.greendaotestdemo.db.StudyClassDao
+import com.dan.greendaotestdemo.dbbean.ClassRoom
 
 class GreenDaoHelper {
 
@@ -33,6 +34,21 @@ class GreenDaoHelper {
 
         fun addAchievenment(achievement: Achievement) {
             mDaoSeesion.achievementDao.insert(achievement)
+        }
+
+        fun addClass(classRoom: ClassRoom) {
+            mDaoSeesion.classRoomDao.insert(classRoom)
+        }
+
+        fun selectStudyAchievement(): List<Achievement> {
+            return mDaoSeesion.achievementDao.queryBuilder().whereOr(
+                    AchievementDao.Properties.MName.eq("小林"),
+                    AchievementDao.Properties.MName.eq("小华")).list()
+        }
+
+        fun selectClassAllStudents(): MutableList<ClassRoom> {
+            return mDaoSeesion.classRoomDao.queryBuilder()
+                .where(ClassRoomDao.Properties.Id.eq(2014014)).list()
         }
     }
 }

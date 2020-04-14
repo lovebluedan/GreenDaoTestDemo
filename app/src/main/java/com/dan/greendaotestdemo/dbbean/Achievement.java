@@ -5,50 +5,63 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
+
+/**
+ * 成绩表 学号 姓名 数学 语文 英语
+ */
 @Entity
 public class Achievement {
     @Id
-    @NotNull
-    private long id;
+    private Long mId;
     @Property
-    private long idCard;
+    private String mName;
     @Property
-    private String name;
+    private double mMathematics;
     @Property
-    private String achievement;
-    @Generated(hash = 735680482)
-    public Achievement(long id, long idCard, String name, String achievement) {
-        this.id = id;
-        this.idCard = idCard;
-        this.name = name;
-        this.achievement = achievement;
+    private double mChina;
+    @Property
+    private double mEnglish;
+    @Generated(hash = 302938830)
+    public Achievement(Long mId, String mName, double mMathematics, double mChina,
+            double mEnglish) {
+        this.mId = mId;
+        this.mName = mName;
+        this.mMathematics = mMathematics;
+        this.mChina = mChina;
+        this.mEnglish = mEnglish;
     }
     @Generated(hash = 1106222797)
     public Achievement() {
     }
-    public long getId() {
-        return this.id;
+    public Long getMId() {
+        return this.mId;
     }
-    public void setId(long id) {
-        this.id = id;
+    public void setMId(Long mId) {
+        this.mId = mId;
     }
-    public long getIdCard() {
-        return this.idCard;
+    public String getMName() {
+        return this.mName;
     }
-    public void setIdCard(long idCard) {
-        this.idCard = idCard;
+    public void setMName(String mName) {
+        this.mName = mName;
     }
-    public String getName() {
-        return this.name;
+    public double getMMathematics() {
+        return this.mMathematics;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setMMathematics(double mMathematics) {
+        this.mMathematics = mMathematics;
     }
-    public String getAchievement() {
-        return this.achievement;
+    public double getMChina() {
+        return this.mChina;
     }
-    public void setAchievement(String achievement) {
-        this.achievement = achievement;
+    public void setMChina(double mChina) {
+        this.mChina = mChina;
+    }
+    public double getMEnglish() {
+        return this.mEnglish;
+    }
+    public void setMEnglish(double mEnglish) {
+        this.mEnglish = mEnglish;
     }
 
 }
