@@ -26,7 +26,7 @@ android {
 //step1：
 greendao{
     //指定数据库schema版本号，迁移等操作会用到;
-    schemaVersion 1
+    schemaVersion 2
     //dao的包名，包名默认是entity所在的包；
     daoPackage 'com.dan.greendaotestdemo.db'
 }
@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     testImplementation 'junit:junit:4.13'
     implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1' //用于数据库升级
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

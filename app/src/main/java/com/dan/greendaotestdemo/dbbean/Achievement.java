@@ -21,14 +21,17 @@ public class Achievement {
     private double mChina;
     @Property
     private double mEnglish;
-    @Generated(hash = 302938830)
+    @Property
+    private double mphysics;
+    @Generated(hash = 623521344)
     public Achievement(Long mId, String mName, double mMathematics, double mChina,
-            double mEnglish) {
+            double mEnglish, double mphysics) {
         this.mId = mId;
         this.mName = mName;
         this.mMathematics = mMathematics;
         this.mChina = mChina;
         this.mEnglish = mEnglish;
+        this.mphysics = mphysics;
     }
     @Generated(hash = 1106222797)
     public Achievement() {
@@ -62,6 +65,12 @@ public class Achievement {
     }
     public void setMEnglish(double mEnglish) {
         this.mEnglish = mEnglish;
+    }
+    public double getMphysics() {
+        return this.mphysics;
+    }
+    public void setMphysics(double mphysics) {
+        this.mphysics = mphysics;
     }
 
 }

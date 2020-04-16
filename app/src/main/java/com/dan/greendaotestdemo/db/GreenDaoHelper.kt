@@ -9,6 +9,10 @@ import com.dan.greendaotestdemo.db.AchievementDao
 import com.dan.greendaotestdemo.db.StudyClassDao
 import com.dan.greendaotestdemo.dbbean.ClassRoom
 
+/**
+ * 封装好的一个数据句帮助类
+ * create by 林丹荣 自己学习使用。
+ */
 class GreenDaoHelper {
 
     companion object {
@@ -22,7 +26,11 @@ class GreenDaoHelper {
         lateinit var mDaoSeesion: DaoSession
 
         fun initDataBase() {
-            mHelper = DaoMaster.DevOpenHelper(App.mApplication, DB_NAME)
+            //不支持数据升级保存的
+//            mHelper = DaoMaster.DevOpenHelper(App.mApplication, DB_NAME)
+//            mDb = mHelper.writableDatabase
+            //支持数据库升级保存的
+            mHelper = DBUpdateHelper(App.mApplication, DB_NAME)
             mDb = mHelper.writableDatabase
             mDaoMaster = DaoMaster(mDb)
             mDaoSeesion = mDaoMaster.newSession()
