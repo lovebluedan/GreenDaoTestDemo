@@ -110,3 +110,6 @@
 }
 -keep class com.dan.greendaotestdemo.db.**{*;} #根据实际情况，主要是不要你自己的Helper的数据混淆
 -keep class **$Properties
+#加密的混淆
+-keep class net.sqlcipher.** { *; }
+-keep class net.sqlcipher.database.* { *; }

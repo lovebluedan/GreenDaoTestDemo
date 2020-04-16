@@ -24,15 +24,21 @@ class GreenDaoHelper {
         //管理数据库
         lateinit var mDaoMaster: DaoMaster
         lateinit var mDaoSeesion: DaoSession
-
-        fun initDataBase() {
+        //        var encrypted: Boolean = false
+        fun initDataBase(encrypted: Boolean) {
             //不支持数据升级保存的
 //            mHelper = DaoMaster.DevOpenHelper(App.mApplication, DB_NAME)
 //            mDb = mHelper.writableDatabase
             //支持数据库升级保存的
             mHelper = DBUpdateHelper(App.mApplication, DB_NAME)
-            mDb = mHelper.writableDatabase
-            mDaoMaster = DaoMaster(mDb)
+            if (encrypted) {
+                //数据加密
+                mDaoMaster = DaoMaster(mHelper.getEncryptedWritableDb("password"))
+            } else {
+                //数据不加密
+                mDb = mHelper.writableDatabase
+                mDaoMaster = DaoMaster(mDb)
+            }
             mDaoSeesion = mDaoMaster.newSession()
         }
 
@@ -50,8 +56,9 @@ class GreenDaoHelper {
 
         fun selectStudyAchievement(): List<Achievement> {
             return mDaoSeesion.achievementDao.queryBuilder().whereOr(
-                    AchievementDao.Properties.MName.eq("小林"),
-                    AchievementDao.Properties.MName.eq("小华")).list()
+                AchievementDao.Properties.MName.eq("小林"),
+                AchievementDao.Properties.MName.eq("小华")
+            ).list()
         }
 
         fun selectClassAllStudents(): MutableList<ClassRoom> {

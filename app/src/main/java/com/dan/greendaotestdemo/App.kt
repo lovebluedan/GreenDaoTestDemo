@@ -17,7 +17,7 @@ class App : Application() {
     }
 
     fun initDB() {
-        GreenDaoHelper.initDataBase()
+        GreenDaoHelper.initDataBase(true)
     }
 
     override fun getApplicationContext(): Context {
