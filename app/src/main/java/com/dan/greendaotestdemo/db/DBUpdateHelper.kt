@@ -27,5 +27,4 @@ class DBUpdateHelper : DaoMaster.DevOpenHelper {
             }
         },AchievementDao::class.java, ClassRoomDao::class.java, StudyClassDao::class.java)
     }
-
 }
